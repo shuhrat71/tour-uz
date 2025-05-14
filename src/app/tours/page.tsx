@@ -1,9 +1,14 @@
+import { UltimateTravel } from "@/components";
 import React from "react";
 
 type Props = {};
 
 const Tours = (props: Props) => {
-  return <div>Tours</div>;
+  return (
+    <div>
+      <UltimateTravel />
+    </div>
+  );
 };
 
 export default Tours;
