@@ -1,8 +1,9 @@
-import { HealthAndSafety } from "@mui/icons-material";
-import { Stack, SvgIconTypeMap, Typography } from "@mui/material";
 import React from "react";
-import { GoodSideStyle } from "./goodSide.style";
+
+import { SvgIconTypeMap, Typography } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
+
+import { GoodSideStyle } from "./goodSide.style";
 
 type Props = {
   title: string;

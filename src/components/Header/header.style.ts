@@ -1,3 +1,4 @@
+"use client";
 import styled from "@emotion/styled";
 
 export const HeaderStyle = styled.div`
@@ -47,5 +48,13 @@ export const HeaderStyle = styled.div`
 
   .link {
     text-decoration: none;
+  }
+
+  @media only screen and (min-width: 320px) and (max-width: 600px) {
+    .questionLink,
+    .questionPhone,
+    .divider {
+      display: none;
+    }
   }
 `;

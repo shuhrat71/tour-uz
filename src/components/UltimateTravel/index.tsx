@@ -6,12 +6,12 @@ import Link from "next/link";
 import {
   Box,
   Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Divider,
   Stack,
+  Divider,
+  CardMedia,
   Typography,
+  CardContent,
+  CardActionArea,
 } from "@mui/material";
 import { AccessAlarm } from "@mui/icons-material";
 
@@ -28,12 +28,9 @@ const UltimateTravel = () => {
           <Link href={`/ultimate-service/${id}`} className="link">
             <Card
               sx={{
-                width: 600,
-                padding: "0",
                 boxShadow: 3,
-                maxWidth: 550,
-                minWidth: { xs: 350, sm: 400 },
               }}
+              className="card"
             >
               <CardActionArea>
                 <CardMedia

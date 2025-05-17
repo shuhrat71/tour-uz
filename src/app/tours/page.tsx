@@ -1,14 +1,9 @@
-import { UltimateTravel } from "@/components";
 import React from "react";
 
-type Props = {};
+import { UltimateTravel } from "@/components";
 
-const Tours = (props: Props) => {
-  return (
-    <div>
-      <UltimateTravel />
-    </div>
-  );
+const Tours = () => {
+  return <UltimateTravel />;
 };
 
 export default Tours;
