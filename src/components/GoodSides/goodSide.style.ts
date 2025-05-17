@@ -1,4 +1,6 @@
+"use client";
 import styled from "@emotion/styled";
+
 export const GoodSideStyle = styled.div`
   display: flex;
   width: fit-content;

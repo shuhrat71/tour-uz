@@ -1,3 +1,4 @@
+"use client";
 import styled from "@emotion/styled";
 
 export const UltimateServiceStyle = styled.div`
@@ -10,6 +11,14 @@ export const UltimateServiceStyle = styled.div`
   .tabPanel {
     border-radius: 5px;
     border: 1px solid #bababa;
+  }
+  .bookTour {
+    width: 100%;
+  }
+  @media screen and (min-width: 1200px) and (max-width: 1400px) {
+    img {
+      width: 900px;
+    }
   }
 `;
 
@@ -26,21 +35,14 @@ export const CostItem = styled.div`
   button {
     padding: 15px;
   }
-  @media screen and (max-width: 1000px) {
-    width: 100%;
-    margin-top: 20px;
-    padding: 0;
-  }
+
   h1,
   p {
     padding: 20px 0 0 20px;
   }
-  button {
-    margin: 0 20px 20px 20px;
-  }
 
   .link {
-    width: 90%;
+    padding: 20px;
     text-decoration: none;
     color: white;
   }
