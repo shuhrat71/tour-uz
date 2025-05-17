@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Container } from "@mui/material";
+import "../../../src/app/page.module.css";
 
 export const FooterWr = styled.footer`
   background-color: #101010;

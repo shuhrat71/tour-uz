@@ -2,7 +2,6 @@
 
 import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import Logo from "../../Home/Components/img/FooterBlackLogo.png";
 import CallIcon from "@mui/icons-material/Call";
 import {
   FooterWr,
@@ -31,7 +30,7 @@ function Footer() {
     <FooterWr>
       <FooterContainer maxWidth="xl">
         <FooterLogo>
-          <img width={200} src="./FooterBlackLogo.png" alt="logo" />
+          <img width={100} src="./FooterBlackLogo.png" alt="logo" />
         </FooterLogo>
 
         <FooterQuickLinks>
