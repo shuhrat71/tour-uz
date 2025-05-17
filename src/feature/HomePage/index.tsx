@@ -34,14 +34,27 @@ import {
 } from "./HomePage.style";
 import { db } from "@/firebase/config";
 
+interface CarouselItem {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
 const HomePage = () => {
-  const [caruselData, setCaruselData] = useState(null);
+  const [caruselData, setCaruselData] = useState<CarouselItem[] | null>(null);
+
   useEffect(() => {
     const getDocuments = async () => {
       const querySnapshot = await getDocs(collection(db, "HomeCaruselData"));
-      const data: any = [];
+      const data: CarouselItem[] = [];
       querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() });
+        data.push({
+          id: doc.id,
+          title: doc.data().title,
+          description: doc.data().description,
+          image: doc.data().img,
+        });
       });
       setCaruselData(data);
     };
@@ -52,22 +65,23 @@ const HomePage = () => {
     <HomePageStyle>
       <SliderWrapper>
         <Slider {...SETTINGS}>
-          {DATA.map((item, index) => (
-            <div key={index} className="slide">
-              <div className="dark-overlay"></div>
-              <div className="overlay">
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
+          {caruselData &&
+            caruselData.map((item, index) => (
+              <div key={index} className="slide">
+                <div className="dark-overlay"></div>
+                <div className="overlay">
+                  <h2>{item.title}</h2>
+                  <p>{item.description}</p>
+                </div>
+                <Image
+                  width={820}
+                  height={300}
+                  src={item.image}
+                  alt={item.title}
+                  style={{ width: "100%", height: "auto" }}
+                />
               </div>
-              <Image
-                width={820}
-                height={300}
-                src={item.image}
-                alt={item.title}
-                style={{ width: "100%", height: "auto" }}
-              />
-            </div>
-          ))}
+            ))}
         </Slider>
       </SliderWrapper>
 
