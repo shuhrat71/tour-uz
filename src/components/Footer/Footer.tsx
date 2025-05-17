@@ -31,7 +31,7 @@ function Footer() {
     <FooterWr>
       <FooterContainer maxWidth="xl">
         <FooterLogo>
-          {/* <img width={200} src={Logo} alt="logo" /> */}
+          <img width={200} src="./FooterBlackLogo.png" alt="logo" />
         </FooterLogo>
 
         <FooterQuickLinks>
