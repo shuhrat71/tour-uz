@@ -1,10 +1,15 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import Image from "next/image";
 
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  DocumentData,
+  getDocs,
+  QueryDocumentSnapshot,
+} from "firebase/firestore";
 
 import {
   Grade,
@@ -30,11 +35,15 @@ import {
 import { db } from "@/firebase/config";
 
 const HomePage = () => {
+  const [caruselData, setCaruselData] = useState(null);
   useEffect(() => {
     const getDocuments = async () => {
       const querySnapshot = await getDocs(collection(db, "HomeCaruselData"));
-
-      console.log(querySnapshot);
+      const data: any = [];
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+      });
+      setCaruselData(data);
     };
 
     getDocuments();
