@@ -1,15 +1,9 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import Image from "next/image";
-
-import {
-  collection,
-  DocumentData,
-  getDocs,
-  QueryDocumentSnapshot,
-} from "firebase/firestore";
 
 import {
   Grade,
@@ -19,8 +13,9 @@ import {
 } from "@mui/icons-material";
 import { Box, Grid, Stack, Container, Typography } from "@mui/material";
 
-import { CITIES, DATA, SETTINGS, SHORTS } from "./mocs";
-import { GoodSide, UltimateTravel, AccordionCities } from "@/components";
+import { SETTINGS } from "./mocs";
+import { UltimateTravel } from "@/components";
+import { AccordionCard, GoodSide } from "./components";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -32,56 +27,39 @@ import {
   ExperiensWithUs,
   TourActivitieStyle,
 } from "./HomePage.style";
-import { db } from "@/firebase/config";
-
-interface CarouselItem {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-}
+import { DataType, getDocuments } from "@/mocs";
 
 const HomePage = () => {
-  const [caruselData, setCaruselData] = useState<CarouselItem[] | null>(null);
+  const [shorts, setShorts] = useState<DataType[] | null>(null);
+  const [cityData, setCityData] = useState<DataType[] | null>(null);
+  const [caruselData, setCaruselData] = useState<DataType[] | null>(null);
 
   useEffect(() => {
-    const getDocuments = async () => {
-      const querySnapshot = await getDocs(collection(db, "HomeCaruselData"));
-      const data: CarouselItem[] = [];
-      querySnapshot.forEach((doc) => {
-        data.push({
-          id: doc.id,
-          title: doc.data().title,
-          description: doc.data().description,
-          image: doc.data().img,
-        });
-      });
-      setCaruselData(data);
-    };
-
-    getDocuments();
+    getDocuments("shorts", setShorts);
+    getDocuments("CitiesData", setCityData);
+    getDocuments("HomeCaruselData", setCaruselData);
   }, []);
+
   return (
     <HomePageStyle>
       <SliderWrapper>
         <Slider {...SETTINGS}>
-          {caruselData &&
-            caruselData.map((item, index) => (
-              <div key={index} className="slide">
-                <div className="dark-overlay"></div>
-                <div className="overlay">
-                  <h2>{item.title}</h2>
-                  <p>{item.description}</p>
-                </div>
-                <Image
-                  width={820}
-                  height={300}
-                  src={item.image}
-                  alt={item.title}
-                  style={{ width: "100%", height: "auto" }}
-                />
+          {caruselData?.map(({ title, description, img }, index) => (
+            <div key={index} className="slide">
+              <div className="dark-overlay"></div>
+              <div className="overlay">
+                <h2>{title}</h2>
+                <p>{description}</p>
               </div>
-            ))}
+              <Image
+                width={820}
+                height={300}
+                src={img}
+                alt={title}
+                style={{ width: "100%", height: "auto" }}
+              />
+            </div>
+          ))}
         </Slider>
       </SliderWrapper>
 
@@ -95,11 +73,11 @@ const HomePage = () => {
             alignItems="center"
             justifyContent="center"
           >
-            {SHORTS.map((src, index) => (
+            {shorts?.map(({ url }, index) => (
               <Grid key={index} size={{ lg: 2 }}>
                 <Box className="shortsWrapper">
                   <iframe
-                    src={src}
+                    src={url}
                     frameBorder="0"
                     allowFullScreen
                     title={`YouTube video ${index}`}
@@ -159,9 +137,9 @@ const HomePage = () => {
         <TouristSpot>
           <Typography className="title">Finest Tourist Spot</Typography>
           <Grid container spacing={3} padding={3}>
-            {CITIES.map(({ img, name, description }, index) => (
+            {cityData?.map(({ img, name, description }, index) => (
               <Grid size={{ xs: 12, sm: 6, md: 3 }} key={name}>
-                <AccordionCities
+                <AccordionCard
                   img={img}
                   name={name}
                   description={description}

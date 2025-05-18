@@ -13,11 +13,11 @@ import { ExpandMore } from "@mui/icons-material";
 type Props = {
   img: string;
   name: string;
-  description: string;
   index: number;
+  description: string;
 };
 
-const AccordionCities = ({ img, name, description, index }: Props) => {
+const AccordionCard = ({ img, name, description, index }: Props) => {
   const [expanded, setExpanded] = useState<number | false>(false);
 
   const handleChange =
@@ -62,4 +62,4 @@ const AccordionCities = ({ img, name, description, index }: Props) => {
   );
 };
 
-export default AccordionCities;
+export default AccordionCard;

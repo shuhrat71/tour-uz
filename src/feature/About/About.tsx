@@ -13,7 +13,8 @@ import {
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 
 import { BEST_SIDES_DATA } from "./mocs";
-import { BestSide, StatsCard, UltimateTravel } from "@/components";
+import { UltimateTravel } from "@/components";
+import { BestSide, StatsCard } from "./components";
 
 import { AboutStyle } from "./About.style";
 

@@ -1,8 +1,9 @@
+"use client";
+
 import React from "react";
 
 import { SvgIconTypeMap, Typography } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-
 import { GoodSideStyle } from "./goodSide.style";
 
 type Props = {

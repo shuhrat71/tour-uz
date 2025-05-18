@@ -6,8 +6,8 @@ import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { StatsCardStyle } from "./StatsCard.style";
 
 type Props = {
-  amount: string;
   title: string;
+  amount: string;
   Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 };
 
