@@ -40,7 +40,7 @@ function Footer() {
           <Link href="/tours">Tours</Link>
           <Link href="/gallery">Gallery</Link>
           <Link href="/contact">Conract</Link>
-          <Link href="/happyClients">Happy-Clients</Link>
+          <Link href="/happy-clients">Happy-Clients</Link>
         </FooterQuickLinks>
 
         <FooterContact>
