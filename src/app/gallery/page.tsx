@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { Box, CircularProgress, Container } from "@mui/material";
 
-import { app } from "../../db/firebase";
+import { app } from "../../lib/db";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 import { GalleryWrapper, ImageCard } from "./style";

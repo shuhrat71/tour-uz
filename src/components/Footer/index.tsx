@@ -36,6 +36,11 @@ function Footer() {
         <FooterQuickLinks>
           <Typography variant="h6">Quick Links</Typography>
           <Link href="/">Home</Link>
+          <Link href="about">About</Link>
+          <Link href="/tours">Tours</Link>
+          <Link href="/gallery">Gallery</Link>
+          <Link href="/contact">Conract</Link>
+          <Link href="/happyClients">Happy-Clients</Link>
         </FooterQuickLinks>
 
         <FooterContact>
@@ -86,12 +91,9 @@ function Footer() {
             <YouTubeIcon />
             <Typography>YouTube</Typography>
           </div>
-          <div
-            className="social-item"
-            onClick={() => openLink("https://t.me/tolipov_olimjon")}
-          >
+          <div className="social-item">
             <TelegramIcon />
-            <Typography>Telegram</Typography>
+            <Link href="https://t.me/tolipov_olimjon">Telegram</Link>
           </div>
         </FooterSocial>
       </FooterContainer>

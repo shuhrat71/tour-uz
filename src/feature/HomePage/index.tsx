@@ -36,8 +36,6 @@ import {
   SliderWrapper,
   ExperiensWithUs,
   TourActivitieStyle,
-  CityBox,
-  CityName,
 } from "./HomePage.style";
 import GoodSide from "@/components/GoodSides";
 
