@@ -1,5 +1,6 @@
 import React from "react";
-import UltimateServicePage from "@/feature/UltimateServece/UltimateServec";
+
+import { UltimateServicePage } from "@/feature";
 
 const UltimateServece = () => {
   return <UltimateServicePage />;

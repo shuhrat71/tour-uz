@@ -1,4 +1,6 @@
+// goodSide.style.ts
 "use client";
+
 import styled from "@emotion/styled";
 
 export const GoodSideStyle = styled.div`

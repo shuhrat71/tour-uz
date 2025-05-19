@@ -105,9 +105,9 @@ function Header() {
           </Box>
 
           <Stack direction="row" alignItems="center" gap={1}>
-            <a href="https://api.whatsapp.com/send/?phone=998999272211">
+            <Link href="https://api.whatsapp.com/send/?phone=998999272211">
               <CallIcon className="callIcon" />
-            </a>
+            </Link>
             <Divider orientation="vertical" flexItem className="divider" />
             <Box>
               <Link

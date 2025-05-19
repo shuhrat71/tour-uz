@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -18,20 +18,31 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
 
-import { TOURS, ToursType } from "@/components/UltimateTravel/moc";
+import { TARVEL_DATA } from "./mocs";
+import { TravelDay } from "./components";
 
+import { DataType, getDocuments } from "@/mocs";
 import {
   CostItem,
   UltimateServiceStyle,
 } from "@/feature/UltimateServece/ultimateServer.style";
-import { TravelDay } from "@/components";
-import { TARVEL_DATA } from "./mocs";
 
 const UltimateServicePage = () => {
-  const { id } = useParams<{ id: string }>();
   const [value, setValue] = React.useState("1");
+  const [travelData, setTravelData] = useState<DataType[] | null>(null);
 
-  const tour: ToursType = TOURS.find((item) => item.id === id) as ToursType;
+  useEffect(() => {
+    getDocuments("TravelData", setTravelData);
+  }, []);
+
+  const { id } = useParams<{ id: string }>();
+
+  const tour = travelData?.find((item) => item.id === id);
+
+  if (!tour) {
+    return <Typography variant="h6">Tour not found</Typography>;
+  }
+
   const { img, title, price, limit } = tour;
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -45,7 +56,7 @@ const UltimateServicePage = () => {
           {title}
         </Typography>
         <Stack direction={{ md: "column", lg: "row" }} mt={3} gap={2}>
-          <Box>
+          <Box flex={3}>
             <Image
               src={img}
               alt={title}
@@ -55,8 +66,8 @@ const UltimateServicePage = () => {
               style={{
                 width: "100%",
                 height: "auto",
-                borderRadius: "10px",
                 objectFit: "cover",
+                borderRadius: "10px",
               }}
             />{" "}
             <Box sx={{ width: "100%", typography: "body1" }}>
@@ -90,7 +101,7 @@ const UltimateServicePage = () => {
                     </Typography>
                   </TabPanel>
                   <TabPanel value="2">
-                    <Box p={4}>
+                    <Box>
                       {TARVEL_DATA.map((day, index) => (
                         <TravelDay
                           key={index}
@@ -125,7 +136,7 @@ const UltimateServicePage = () => {
               </TabContext>
             </Box>
           </Box>
-          <Box className="bookTour">
+          <Box className="bookTour" flex={1}>
             <CostItem>
               <Typography variant="h1" margin={"0 0 10px 0"}>
                 {price}

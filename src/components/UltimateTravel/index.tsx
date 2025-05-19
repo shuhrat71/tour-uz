@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import {
@@ -15,17 +15,22 @@ import {
 } from "@mui/material";
 import { AccessAlarm } from "@mui/icons-material";
 
-import { TOURS } from "./moc";
-
 import { Cards__wrapper, UltimateTravelStyle } from "./UltimateTravel.style";
+import { DataType, getDocuments } from "@/mocs";
 
 const UltimateTravel = () => {
+  const [travelData, setTravelData] = useState<DataType[] | null>(null);
+
+  useEffect(() => {
+    getDocuments("TravelData", setTravelData);
+  }, []);
+
   return (
     <UltimateTravelStyle>
       <Typography className="title">Ultimate Travel Experience</Typography>
       <Cards__wrapper>
-        {TOURS.map(({ id, img, title, price, limit }) => (
-          <Link href={`/ultimate-service/${id}`} className="link">
+        {travelData?.map(({ id, img, title, price, limit }) => (
+          <Link href={`/${id}`} className="link" key={title}>
             <Card
               sx={{
                 boxShadow: 3,
