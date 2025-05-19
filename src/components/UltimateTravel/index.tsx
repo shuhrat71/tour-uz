@@ -30,7 +30,7 @@ const UltimateTravel = () => {
       <Typography className="title">Ultimate Travel Experience</Typography>
       <Cards__wrapper>
         {travelData?.map(({ id, img, title, price, limit }) => (
-          <Link href={`/ultimate-service/${id}`} className="link" key={title}>
+          <Link href={`/${id}`} className="link" key={title}>
             <Card
               sx={{
                 boxShadow: 3,

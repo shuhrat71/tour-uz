@@ -56,7 +56,7 @@ const UltimateServicePage = () => {
           {title}
         </Typography>
         <Stack direction={{ md: "column", lg: "row" }} mt={3} gap={2}>
-          <Box>
+          <Box flex={3}>
             <Image
               src={img}
               alt={title}
@@ -101,7 +101,7 @@ const UltimateServicePage = () => {
                     </Typography>
                   </TabPanel>
                   <TabPanel value="2">
-                    <Box p={4}>
+                    <Box>
                       {TARVEL_DATA.map((day, index) => (
                         <TravelDay
                           key={index}
@@ -136,7 +136,7 @@ const UltimateServicePage = () => {
               </TabContext>
             </Box>
           </Box>
-          <Box className="bookTour">
+          <Box className="bookTour" flex={1}>
             <CostItem>
               <Typography variant="h1" margin={"0 0 10px 0"}>
                 {price}
