@@ -5,26 +5,26 @@ import { collection, getDocs } from "firebase/firestore";
 
 import {
   Box,
-  CircularProgress,
-  Container,
   Divider,
+  Container,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 
-import { ClienstImages, Clients__wrapper, SatisfiedClients } from "./style";
-
 import { db } from "../../lib/db";
+
+import { ClienstImages, Clients__wrapper, SatisfiedClients } from "./style";
 
 type Props = {};
 interface DataItem {
   id: string;
   img: string;
   video: string;
-  imgTitle: string;
   imgText: string;
+  imgName: string;
+  imgTitle: string;
   clientsImg: string;
   clentLocation: string;
-  imgName: string;
 }
 function HappyClientsPage({}: Props) {
   const [data, setData] = useState<DataItem[]>([]);
@@ -68,8 +68,8 @@ function HappyClientsPage({}: Props) {
         sx={{
           display: "flex",
           height: "70vh",
-          justifyContent: "center",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <CircularProgress />
@@ -101,8 +101,8 @@ function HappyClientsPage({}: Props) {
           {satisfiedClients.slice(1).map((item1) => (
             <Box>
               <img
-                src={item1.img}
                 loading="lazy"
+                src={item1.img}
                 style={{ width: "100%", height: "auto" }}
               />
               <h1>{item1.imgName}</h1>

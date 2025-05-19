@@ -14,14 +14,12 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import TabContext from "@mui/lab/TabContext";
+import { TabList, TabPanel, TabContext } from "@mui/lab";
 
 import { TARVEL_DATA } from "./mocs";
 import { TravelDay } from "./components";
-
 import { DataType, getDocuments } from "@/mocs";
+
 import {
   CostItem,
   UltimateServiceStyle,

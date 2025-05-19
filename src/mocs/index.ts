@@ -1,7 +1,8 @@
 "use client";
 
-import { db } from "@/db/config";
 import { collection, getDocs } from "firebase/firestore";
+
+import { db } from "@/lib/db";
 
 export interface DataType {
   id: string;

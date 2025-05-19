@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+
 import Link from "next/link";
 
 import {
@@ -15,15 +16,14 @@ import {
 } from "@mui/material";
 import { AccessAlarm } from "@mui/icons-material";
 
-import { Cards__wrapper, UltimateTravelStyle } from "./UltimateTravel.style";
 import { DataType, getDocuments } from "@/mocs";
+
+import { Cards__wrapper, UltimateTravelStyle } from "./UltimateTravel.style";
 
 const UltimateTravel = () => {
   const [travelData, setTravelData] = useState<DataType[] | null>(null);
 
-  useEffect(() => {
-    getDocuments("TravelData", setTravelData);
-  }, []);
+  getDocuments("TravelData", setTravelData);
 
   return (
     <UltimateTravelStyle>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -25,12 +25,29 @@ import { HeaderStyle } from "./header.style";
 function Header() {
   const [showHeader, setShowHeader] = useState(true);
   const [anchorElNav, setAnchorElNav] = useState<null>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const pathname = usePathname();
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   const pages = [
     "Home",
@@ -111,14 +128,14 @@ function Header() {
             <Divider orientation="vertical" flexItem className="divider" />
             <Box>
               <Link
-                href="https://api.whatsapp.com/send/?phone=998999272211"
                 className="questionLink"
+                href="https://api.whatsapp.com/send/?phone=998999272211"
               >
                 To More Inquiry
               </Link>
               <Link
-                href="https://api.whatsapp.com/send/?phone=998999272211&text&type=phone_number&app_absent=0"
                 className="questionPhone"
+                href="https://api.whatsapp.com/send/?phone=998999272211&text&type=phone_number&app_absent=0"
               >
                 +998(99)927-22-11
               </Link>

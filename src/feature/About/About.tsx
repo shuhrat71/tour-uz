@@ -39,8 +39,8 @@ const AboutPage = () => {
               experience.
             </Typography>
             <Grid container spacing={4} mt={{ xs: 2, sm: 4, md: 7 }}>
-              {[...Array(4)].map(() => (
-                <Grid className="makeThings" size={{ sm: 6 }}>
+              {[...Array(4)].map((index) => (
+                <Grid className="makeThings" size={{ sm: 6 }} key={index}>
                   <EventAvailable className="icon" />
                   <Typography className="title">
                     Time and Stress Savings

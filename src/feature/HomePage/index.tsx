@@ -15,6 +15,7 @@ import { Box, Grid, Stack, Container, Typography } from "@mui/material";
 
 import { SETTINGS } from "./mocs";
 import { UltimateTravel } from "@/components";
+import { DataType, getDocuments } from "@/mocs";
 import { AccordionCard, GoodSide } from "./components";
 
 import "slick-carousel/slick/slick.css";
@@ -27,7 +28,6 @@ import {
   ExperiensWithUs,
   TourActivitieStyle,
 } from "./HomePage.style";
-import { DataType, getDocuments } from "@/mocs";
 
 const HomePage = () => {
   const [shorts, setShorts] = useState<DataType[] | null>(null);
