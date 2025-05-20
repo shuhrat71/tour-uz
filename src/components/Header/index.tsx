@@ -23,9 +23,9 @@ import CallIcon from "@mui/icons-material/Call";
 import { HeaderStyle } from "./header.style";
 
 function Header() {
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [showHeader, setShowHeader] = useState(true);
   const [anchorElNav, setAnchorElNav] = useState<null>(null);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   const pathname = usePathname();
 

@@ -1,10 +1,13 @@
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import type { Metadata } from "next";
-import { Footer, Header } from "@/components";
 import { Roboto } from "next/font/google";
-import "./globals.css";
+
 import { ThemeProvider } from "@mui/material/styles";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
+
 import theme from "../theme";
+import { Footer, Header } from "@/components";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Travel with me",
