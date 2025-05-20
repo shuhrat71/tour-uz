@@ -1,39 +1,41 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import Link from "next/link";
 
 import {
   Box,
   Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Divider,
   Stack,
+  Divider,
+  CardMedia,
   Typography,
+  CardContent,
+  CardActionArea,
 } from "@mui/material";
 import { AccessAlarm } from "@mui/icons-material";
 
-import { TOURS } from "./moc";
+import { DataType, getDocuments } from "@/mocs";
 
 import { Cards__wrapper, UltimateTravelStyle } from "./UltimateTravel.style";
 
 const UltimateTravel = () => {
+  const [travelData, setTravelData] = useState<DataType[] | null>(null);
+
+  getDocuments("TravelData", setTravelData);
+
   return (
     <UltimateTravelStyle>
       <Typography className="title">Ultimate Travel Experience</Typography>
       <Cards__wrapper>
-        {TOURS.map(({ id, img, title, price, limit }) => (
-          <Link href={`/ultimate-service/${id}`} className="link">
+        {travelData?.map(({ id, img, title, price, limit }) => (
+          <Link href={`/${id}`} className="link" key={title}>
             <Card
               sx={{
-                width: 600,
-                padding: "0",
                 boxShadow: 3,
-                maxWidth: 550,
-                minWidth: { xs: 350, sm: 400 },
               }}
+              className="card"
             >
               <CardActionArea>
                 <CardMedia

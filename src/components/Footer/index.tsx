@@ -1,23 +1,27 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import CallIcon from "@mui/icons-material/Call";
+
+import Link from "next/link";
+
+import {
+  Call,
+  YouTube,
+  Telegram,
+  WhatsApp,
+  Instagram,
+} from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
+
 import {
   FooterWr,
+  FooterLogo,
+  FooterSocial,
   FooterBottom,
   FooterContact,
-  FooterLogo,
-  FooterQuickLinks,
-  FooterSocial,
   FooterContainer,
+  FooterQuickLinks,
 } from "./style";
-
-import TelegramIcon from "@mui/icons-material/Telegram";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import Link from "next/link";
 
 function Footer() {
   useEffect(() => {
@@ -36,18 +40,23 @@ function Footer() {
         <FooterQuickLinks>
           <Typography variant="h6">Quick Links</Typography>
           <Link href="/">Home</Link>
+          <Link href="about">About</Link>
+          <Link href="/tours">Tours</Link>
+          <Link href="/gallery">Gallery</Link>
+          <Link href="/contact">Conract</Link>
+          <Link href="/happy-clients">Happy-Clients</Link>
         </FooterQuickLinks>
 
         <FooterContact>
           <Typography variant="h6">
-            <CallIcon /> To More Inquiry
+            <Call /> To More Inquiry
           </Typography>
           <Box marginBottom={3}>
             <a href="tel:+998999272211">+998(99)927-22-11</a>
           </Box>
 
           <Typography variant="h6">
-            <TelegramIcon /> Send Mail
+            <Telegram /> Send Mail
           </Typography>
           <Box flexDirection={"column"} display="flex" gap={1}>
             <a href="mailto:olimjontolipov8@gmail.com">
@@ -61,37 +70,27 @@ function Footer() {
 
         <FooterSocial>
           <Typography variant="h6">We Are Here</Typography>
-          <div
-            className="social-item"
-            onClick={() =>
-              openLink("https://api.whatsapp.com/send/?phone=998999272211")
-            }
-          >
+
+          <div className="social-item">
             <WhatsAppIcon />
-            <Typography>WhatsApp</Typography>
+            <Link href="https://api.whatsapp.com/send/?phone=998999272211">
+              WhatsUp
+            </Link>
           </div>
-          <div
-            className="social-item"
-            onClick={() => openLink("https://www.instagram.com/olimjon_guide/")}
-          >
+          <div className="social-item">
             <InstagramIcon />
-            <Typography>Instagram</Typography>
+            <Link href="https://www.instagram.com/olimjon_guide/">Youtobe</Link>
           </div>
-          <div
-            className="social-item"
-            onClick={() =>
-              openLink("https://www.youtube.com/@Uzbekistan.tourism")
-            }
-          >
+          <div className="social-item">
             <YouTubeIcon />
-            <Typography>YouTube</Typography>
+            <Link href="hhttps://www.youtube.com/@Uzbekistan.tourism">
+              Youtobe
+            </Link>
+
           </div>
-          <div
-            className="social-item"
-            onClick={() => openLink("https://t.me/tolipov_olimjon")}
-          >
-            <TelegramIcon />
-            <Typography>Telegram</Typography>
+          <div className="social-item">
+            <Telegram />
+            <Link href="https://t.me/tolipov_olimjon">Telegram</Link>
           </div>
         </FooterSocial>
       </FooterContainer>

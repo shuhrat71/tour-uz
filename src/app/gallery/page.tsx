@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 
 import { Box, CircularProgress, Container } from "@mui/material";
 
-import { app } from "../../db/firebase";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 import { GalleryWrapper, ImageCard } from "./style";
+import { app } from "@/lib/db";
 
 const db = getFirestore(app);
 
@@ -30,6 +30,7 @@ const GalleryPage = () => {
     fetchGallery();
   }, []);
   return (
+
    
       <Container maxWidth="xl">
         {loading ? (
@@ -51,6 +52,7 @@ const GalleryPage = () => {
         )}
       </Container>
    
+
   );
 };
 
