@@ -30,7 +30,7 @@ const GalleryPage = () => {
     fetchGallery();
   }, []);
   return (
-    <>
+   
       <Container maxWidth="xl">
         {loading ? (
           <Box sx={{ display: "flex", justifyContent: "center", mt: 80 }}>
@@ -50,7 +50,7 @@ const GalleryPage = () => {
           </GalleryWrapper>
         )}
       </Container>
-    </>
+   
   );
 };
 
