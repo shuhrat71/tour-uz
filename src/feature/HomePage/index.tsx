@@ -1,34 +1,25 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import Image from "next/image";
 
 import {
-  Box,
-  Grid,
-  Stack,
-  Container,
-  CardMedia,
-  Accordion,
-  Typography,
-  AccordionSummary,
-  AccordionDetails,
-} from "@mui/material";
-import {
   Grade,
-  ExpandMore,
   HealthAndSafety,
   SelfImprovement,
   WorkspacePremium,
 } from "@mui/icons-material";
+import { Box, Grid, Stack, Container, Typography } from "@mui/material";
 
+import { SETTINGS } from "./mocs";
 import { UltimateTravel } from "@/components";
+import { DataType, getDocuments } from "@/mocs";
+import { AccordionCard, GoodSide } from "./components";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-import { CITIES, DATA, SETTINGS, SHORTS } from "../helpers";
 
 import {
   TouristSpot,
@@ -37,37 +28,41 @@ import {
   ExperiensWithUs,
   TourActivitieStyle,
 } from "./HomePage.style";
-import GoodSide from "@/components/GoodSides";
 
 const HomePage = () => {
-  const [expanded, setExpanded] = useState<number | false>(false);
+  const [shorts, setShorts] = useState<DataType[] | null>(null);
+  const [cityData, setCityData] = useState<DataType[] | null>(null);
+  const [caruselData, setCaruselData] = useState<DataType[] | null>(null);
 
-  const handleChange =
-    (panel: number) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+  useEffect(() => {
+    getDocuments("shorts", setShorts);
+    getDocuments("CitiesData", setCityData);
+    getDocuments("HomeCaruselData", setCaruselData);
+  }, []);
+
   return (
     <HomePageStyle>
       <SliderWrapper>
         <Slider {...SETTINGS}>
-          {DATA.map((item, index) => (
+          {caruselData?.map(({ title, description, img }, index) => (
             <div key={index} className="slide">
               <div className="dark-overlay"></div>
               <div className="overlay">
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
+                <h2>{title}</h2>
+                <p>{description}</p>
               </div>
               <Image
                 width={820}
                 height={300}
-                src={item.image}
-                alt={item.title}
+                src={img}
+                alt={title}
                 style={{ width: "100%", height: "auto" }}
               />
             </div>
           ))}
         </Slider>
       </SliderWrapper>
+
       <Container maxWidth="xl">
         <TourActivitieStyle>
           <Typography className="title">Exploring Tour Activities</Typography>
@@ -78,34 +73,38 @@ const HomePage = () => {
             alignItems="center"
             justifyContent="center"
           >
-            {SHORTS.map((src, index) => (
+            {shorts?.map(({ url }, index) => (
               <Grid key={index} size={{ lg: 2 }}>
                 <Box className="shortsWrapper">
                   <iframe
-                    src={src}
-                    title={`YouTube video ${index}`}
+                    src={url}
                     frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
+                    title={`YouTube video ${index}`}
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   ></iframe>
                 </Box>
               </Grid>
             ))}
           </Grid>
         </TourActivitieStyle>
+
         <ExperiensWithUs>
-          <Stack direction="row" gap={6}>
-            <Box flex={1}>
+          <Stack direction={{ md: "column", lg: "row" }} gap={6}>
+            <Box flex={1} className="experienceImgBox">
               <Image
-                src="/images/homeImages/experience.jpg"
-                alt="experience.jpg"
                 width={500}
                 height={700}
+                alt="experience.jpg"
+                src="/images/homeImages/experience.jpg"
               />
             </Box>
             <Box flex={2}>
-              <Typography className="title">
+              <Typography
+                className="title"
+                textAlign={{ xs: "center", lg: "start" }}
+              >
                 Experience Uzbekistan with Us
               </Typography>
               <Typography className="subtitle">
@@ -122,58 +121,35 @@ const HomePage = () => {
               <Box mt={7}>
                 <GoodSide title=" Safety First Always" Icon={HealthAndSafety} />
                 <GoodSide
-                  title="  Trusted Travel Guide"
                   Icon={WorkspacePremium}
+                  title="  Trusted Travel Guide"
                 />
                 <GoodSide
-                  title="  Time Stress SavingsSafety"
                   Icon={SelfImprovement}
+                  title="  Time Stress SavingsSafety"
                 />
                 <GoodSide title="  360+ Tour Success" Icon={Grade} />
               </Box>
             </Box>
           </Stack>
         </ExperiensWithUs>
+
         <TouristSpot>
           <Typography className="title">Finest Tourist Spot</Typography>
-          <Stack direction="row" gap={3} p={3}>
-            {CITIES.map(({ img, name, description }, index) => (
-              <Box key={name} style={{ width: "350px", borderRadius: 5 }}>
-                <img
-                  src={img}
-                  alt={name}
-                  style={{
-                    width: "100%",
-                    height: "220px",
-                    objectFit: "cover",
-                    borderRadius: 5,
-                  }}
+          <Grid container spacing={3} padding={3}>
+            {cityData?.map(({ img, name, description }, index) => (
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={name}>
+                <AccordionCard
+                  img={img}
+                  name={name}
+                  description={description}
+                  index={index}
                 />
-                <Accordion
-                  expanded={expanded === index}
-                  onChange={handleChange(index)}
-                  sx={{
-                    boxShadow: "none",
-                    "&:before": {
-                      display: "none",
-                    },
-                  }}
-                >
-                  <AccordionSummary
-                    expandIcon={<ExpandMore />}
-                    aria-controls={`panel${index}-content`}
-                    id={`panel${index}-header`}
-                  >
-                    <Typography fontWeight="bold">{name}</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>{description}</Typography>
-                  </AccordionDetails>
-                </Accordion>
-              </Box>
+              </Grid>
             ))}
-          </Stack>
+          </Grid>
         </TouristSpot>
+
         <UltimateTravel />
       </Container>
     </HomePageStyle>

@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 
 import { Box, CircularProgress, Container } from "@mui/material";
 
-import { app } from "../../lib/db";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 import { GalleryWrapper, ImageCard } from "./style";
+import { app } from "@/lib/db";
 
 const db = getFirestore(app);
 
@@ -30,27 +30,21 @@ const GalleryPage = () => {
     fetchGallery();
   }, []);
   return (
-    <>
-      <Container maxWidth="xl">
-        {loading ? (
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 80 }}>
-            <CircularProgress />
-          </Box>
-        ) : (
-          <GalleryWrapper>
-            {galleryData.map((item, idx) => (
-              <ImageCard key={idx}>
-                <img
-                  src={item.img}
-                  alt={item.title || "image"}
-                  loading="lazy"
-                />
-              </ImageCard>
-            ))}
-          </GalleryWrapper>
-        )}
-      </Container>
-    </>
+    <Container maxWidth="xl">
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 80 }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <GalleryWrapper>
+          {galleryData.map((item, idx) => (
+            <ImageCard key={idx}>
+              <img src={item.img} alt={item.title || "image"} loading="lazy" />
+            </ImageCard>
+          ))}
+        </GalleryWrapper>
+      )}
+    </Container>
   );
 };
 

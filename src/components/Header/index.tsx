@@ -1,21 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 import {
   Box,
-  Toolbar,
-  IconButton,
-  Typography,
   Menu,
-  Container,
-  Button,
-  MenuItem,
-  Divider,
   Stack,
+  Button,
+  Divider,
+  Toolbar,
+  MenuItem,
+  Container,
+  Typography,
+  IconButton,
 } from "@mui/material";
 import CallIcon from "@mui/icons-material/Call";
 
@@ -24,14 +25,29 @@ import { HeaderStyle } from "./header.style";
 function Header() {
   const [showHeader, setShowHeader] = useState(true);
   const [anchorElNav, setAnchorElNav] = useState<null>(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const pathname = usePathname();
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const openLink = (url: string) => {
-    window.open(url, "_blank");
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   const pages = [
     "Home",
@@ -82,14 +98,16 @@ function Header() {
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => {
-              const pagePath = `/${page.toLowerCase().replace(/\s+/g, "-")}`;
-              const isActive = location.pathname === pagePath;
+            {pages.map((page, index) => {
+              const pagePath =
+                index === 0
+                  ? "/"
+                  : `/${page.toLowerCase().replace(/\s+/g, "-")}`;
+              const isActive = pathname === pagePath;
 
               return (
-                <Link href={`${pagePath}`} className="link">
+                <Link href={pagePath} key={page} className="link">
                   <Button
-                    key={page}
                     className="pageBtn"
                     sx={{
                       color: isActive ? "#FF9800" : "#2c2b39",
@@ -104,23 +122,20 @@ function Header() {
           </Box>
 
           <Stack direction="row" alignItems="center" gap={1}>
-            <CallIcon
-              className="callIcon"
-              onClick={() =>
-                openLink("https://api.whatsapp.com/send/?phone=998999272211")
-              }
-            />{" "}
-            <Divider orientation="vertical" flexItem />
+            <Link href="https://api.whatsapp.com/send/?phone=998999272211">
+              <CallIcon className="callIcon" />
+            </Link>
+            <Divider orientation="vertical" flexItem className="divider" />
             <Box>
               <Link
-                href="https://api.whatsapp.com/send/?phone=998999272211"
                 className="questionLink"
+                href="https://api.whatsapp.com/send/?phone=998999272211"
               >
                 To More Inquiry
               </Link>
               <Link
-                href="https://api.whatsapp.com/send/?phone=998999272211&text&type=phone_number&app_absent=0"
                 className="questionPhone"
+                href="https://api.whatsapp.com/send/?phone=998999272211&text&type=phone_number&app_absent=0"
               >
                 +998(99)927-22-11
               </Link>

@@ -1,29 +1,28 @@
 "use client";
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
 import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 
 import {
   Box,
   Button,
   Container,
-  TextareaAutosize,
   TextField,
   Typography,
+  TextareaAutosize,
 } from "@mui/material";
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import { AlternateEmail, DateRange, LocalPhone } from "@mui/icons-material";
+
+import "react-phone-input-2/lib/style.css";
 
 import {
-  ContactWrapper,
-  ContactNumber,
+  ReachUs,
   NumberBox,
   PhoneIcon,
-  ReachUs,
+  ContactNumber,
+  ContactWrapper,
 } from "./style";
 
 type Props = {};
@@ -111,13 +110,13 @@ function ContactPage({}: Props) {
         <ContactNumber>
           <NumberBox>
             <PhoneIcon>
-              <LocalPhoneIcon />
+              <LocalPhone />
             </PhoneIcon>
             <Typography variant="body1">+998(99)927 22 11</Typography>
           </NumberBox>
           <NumberBox onClick={handelEmailLink} style={{ cursor: "pointer" }}>
             <PhoneIcon>
-              <AlternateEmailIcon />
+              <AlternateEmail />
             </PhoneIcon>
             <Typography variant="body1" sx={{ cursor: "pointer" }}>
               olimjontolipov8@gmail.com
@@ -125,7 +124,7 @@ function ContactPage({}: Props) {
           </NumberBox>
           <NumberBox>
             <PhoneIcon>
-              <DateRangeIcon />
+              <DateRange />
             </PhoneIcon>
             <Typography variant="body1">24/7</Typography>
           </NumberBox>
@@ -143,36 +142,36 @@ function ContactPage({}: Props) {
               label="Name"
               name="name"
               value={form.name}
-              onChange={handleChange}
               error={errors.name}
+              onChange={handleChange}
               helperText={errors.name ? "Ismni kiriting!" : ""}
             />
 
             <PhoneInput
               country={"us"}
-              onChange={handleValidChange}
               value={phoneNumber}
-              inputProps={{ required: true }}
               placeholder="Phone number"
+              onChange={handleValidChange}
+              inputProps={{ required: true }}
             />
 
             <TextField
-              label="Email"
               fullWidth
               name="email"
+              label="Email"
               value={form.email}
-              onChange={handleChange}
               error={errors.email}
+              onChange={handleChange}
               helperText={errors.email ? "Emailni kiriting!" : ""}
             />
 
             <TextareaAutosize
               minRows={10}
               maxRows={10}
-              placeholder="Message..."
               name="message"
-              onChange={handleChange}
               value={form.message}
+              onChange={handleChange}
+              placeholder="Message..."
             />
 
             <Button type="submit" variant="contained">

@@ -1,23 +1,25 @@
-import { FirebaseApp, getApp, getApps, initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-export const firebaseConfig = {
-  apiKey: "AIzaSyCutT4fqmFDFZFhYe7sk4TLehREDj00rts",
-  authDomain: "tour-guide-4e299.firebaseapp.com",
-  databaseURL: "https://tour-guide-4e299-default-rtdb.firebaseio.com",
-  projectId: "tour-guide-4e299",
-  storageBucket: "tour-guide-4e299.firebasestorage.app",
-  messagingSenderId: "307189665267",
-  appId: "1:307189665267:web:845106fabd76bc44731686",
-  measurementId: "G-X1JN2J652B",
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  projectId: "travel-2bd22",
+  measurementId: "G-J78J4GMFNL",
+  messagingSenderId: "252705449470",
+  storageBucket: "travel-2bd22.appspot.com",
+  authDomain: "travel-2bd22.firebaseapp.com",
+  appId: "1:252705449470:web:444f7b2d3f92ee0e010caf",
+  apiKey: "AIzaSyCzdnjWXwh9s01humFvhH-1anvN54mzxQs",
 };
 
-let app: FirebaseApp;
+let app: any;
+let db: any;
+let analytics;
 
-if (!getApps().length) {
+if (typeof window !== "undefined") {
   app = initializeApp(firebaseConfig);
-} else {
-  app = getApp();
+  db = getFirestore(app);
+  analytics = getAnalytics(app);
 }
 
-const db = getFirestore(app);
-export { app, db };
+export { app, db, analytics };
