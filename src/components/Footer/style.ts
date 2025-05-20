@@ -116,6 +116,10 @@ export const FooterSocial = styled.div`
       color: #ff9800;
     }
   }
+  link {
+    color: white;
+    text-decoration: none;
+  }
 `;
 
 export const FooterBottom = styled.div`

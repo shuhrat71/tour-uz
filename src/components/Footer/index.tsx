@@ -44,7 +44,7 @@ function Footer() {
           <Link href="/tours">Tours</Link>
           <Link href="/gallery">Gallery</Link>
           <Link href="/contact">Conract</Link>
-          <Link href="/happyClients">Happy-Clients</Link>
+          <Link href="/happy-clients">Happy-Clients</Link>
         </FooterQuickLinks>
 
         <FooterContact>
@@ -70,30 +70,23 @@ function Footer() {
 
         <FooterSocial>
           <Typography variant="h6">We Are Here</Typography>
-          <div
-            className="social-item"
-            onClick={() =>
-              openLink("https://api.whatsapp.com/send/?phone=998999272211")
-            }
-          >
-            <WhatsApp />
-            <Typography>WhatsApp</Typography>
+
+          <div className="social-item">
+            <WhatsAppIcon />
+            <Link href="https://api.whatsapp.com/send/?phone=998999272211">
+              WhatsUp
+            </Link>
           </div>
-          <div
-            className="social-item"
-            onClick={() => openLink("https://www.instagram.com/olimjon_guide/")}
-          >
-            <Instagram />
-            <Typography>Instagram</Typography>
+          <div className="social-item">
+            <InstagramIcon />
+            <Link href="https://www.instagram.com/olimjon_guide/">Youtobe</Link>
           </div>
-          <div
-            className="social-item"
-            onClick={() =>
-              openLink("https://www.youtube.com/@Uzbekistan.tourism")
-            }
-          >
-            <YouTube />
-            <Typography>YouTube</Typography>
+          <div className="social-item">
+            <YouTubeIcon />
+            <Link href="hhttps://www.youtube.com/@Uzbekistan.tourism">
+              Youtobe
+            </Link>
+
           </div>
           <div className="social-item">
             <Telegram />
