@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { collection, getDocs } from "firebase/firestore";
-
 import {
   Box,
   Divider,
@@ -11,55 +9,23 @@ import {
   CircularProgress,
 } from "@mui/material";
 
-import { db } from "../../lib/db";
+import { DataType, getDocuments } from "@/mocs";
 
 import { ClienstImages, Clients__wrapper, SatisfiedClients } from "./style";
 
-type Props = {};
-interface DataItem {
-  id: string;
-  img: string;
-  video: string;
-  imgText: string;
-  imgName: string;
-  imgTitle: string;
-  clientsImg: string;
-  clentLocation: string;
-}
-function HappyClientsPage({}: Props) {
-  const [data, setData] = useState<DataItem[]>([]);
-  const [satisfiedClients, setSatisfiedClients] = useState<DataItem[]>([]);
+function HappyClientsPage() {
+  const [happyClientData, setHappyClientData] = useState<DataType[] | null>(
+    null
+  );
+  const [satisfiedClients, setSatisfiedClients] = useState<DataType[] | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "happyClients"));
-      const items: DataItem[] = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as DataItem[];
-      setData(items);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
-  };
-  const satisfiedClientsData = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "satisfiedClients"));
-      const items: DataItem[] = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as DataItem[];
-      setSatisfiedClients(items);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
-  };
   useEffect(() => {
-    fetchData();
-    satisfiedClientsData();
+    getDocuments("HappyClient", setHappyClientData);
+    getDocuments("SatisfiedClients", setSatisfiedClients);
+    setLoading(false);
   }, []);
 
   if (loading)
@@ -79,18 +45,18 @@ function HappyClientsPage({}: Props) {
     <Container maxWidth="xl">
       <Clients__wrapper>
         <ClienstImages>
-          {data.map((item, index) => (
+          {satisfiedClients?.map((item, index) => (
             <Box>
               <img
                 loading="lazy"
                 src={item.img}
-                alt={item.imgTitle}
+                alt={item.title}
                 style={{ width: "100%", height: "auto" }}
               />
-              <Typography variant="h1">{item.imgTitle}</Typography>
-              <p>{item.imgText}</p>
+              <Typography variant="h1">{item.title}</Typography>
+              <p>{item.description}</p>
 
-              {index !== data.length - 1 && ( // Oxirgi elementdan keyin div chiqmasligi uchun
+              {index !== satisfiedClients.length - 1 && (
                 <Box style={{ display: "none", height: 0, margin: 0 }}></Box>
               )}
               <Divider />
@@ -98,14 +64,14 @@ function HappyClientsPage({}: Props) {
           ))}
         </ClienstImages>
         <SatisfiedClients>
-          {satisfiedClients.slice(1).map((item1) => (
+          {happyClientData?.slice(1).map((item1) => (
             <Box>
               <img
                 loading="lazy"
                 src={item1.img}
                 style={{ width: "100%", height: "auto" }}
               />
-              <h1>{item1.imgName}</h1>
+              <h1>{item1.title}</h1>
               <Divider
                 sx={{
                   marginTop: "20px",

@@ -3,32 +3,21 @@ import { useEffect, useState } from "react";
 
 import { Box, CircularProgress, Container } from "@mui/material";
 
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { DataType, getDocuments } from "@/mocs";
 
 import { GalleryWrapper, ImageCard } from "./style";
-import { app } from "@/lib/db";
-
-const db = getFirestore(app);
 
 const GalleryPage = () => {
-  const [galleryData, setGalleryData] = useState<any[]>([]);
+  const [galleryData, setGalleryData] = useState<DataType[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchGallery = async () => {
-      setLoading(true);
-      try {
-        const querySnapshot = await getDocs(collection(db, "gallery"));
-        setGalleryData(
-          querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-        );
-      } catch {
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchGallery();
+    getDocuments("GalleryData", setGalleryData);
+    setLoading(!loading);
   }, []);
+
+  console.log(galleryData);
+
   return (
     <Container maxWidth="xl">
       {loading ? (
@@ -37,7 +26,7 @@ const GalleryPage = () => {
         </Box>
       ) : (
         <GalleryWrapper>
-          {galleryData.map((item, idx) => (
+          {galleryData?.map((item, idx) => (
             <ImageCard key={idx}>
               <img src={item.img} alt={item.title || "image"} loading="lazy" />
             </ImageCard>
