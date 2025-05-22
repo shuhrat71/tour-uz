@@ -44,7 +44,7 @@ function ContactPage({}: Props) {
   });
   const sendToTelegramBot = async (message: string) => {
     const botToken = "7997508632:AAFKuyfBTItJ_csI2kVFdtH8PIQILX3VACs";
-    const chatId = "880681928";
+    const chatId = "6131471337";
 
     const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
