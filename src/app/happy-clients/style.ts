@@ -40,7 +40,10 @@ export const SatisfiedClients = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 18px;
-
+  h2 {
+    font-size: 20px;
+    font-weight: 1000;
+  }
   img {
     border-radius: 6px;
     margin-bottom: 10px;

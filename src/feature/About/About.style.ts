@@ -6,7 +6,6 @@ export const AboutStyle = styled.div`
 
   img {
     flex: 1;
-    border-radius: 10px;
     object-fit: cover;
   }
 

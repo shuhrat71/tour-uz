@@ -5,11 +5,9 @@ export const UltimateServiceStyle = styled.div`
   padding-top: 100px;
 
   img {
-    border-radius: 10px;
     object-fit: cover;
   }
   .tabPanel {
-    border-radius: 5px;
     border: 1px solid #bababa;
   }
   .bookTour {

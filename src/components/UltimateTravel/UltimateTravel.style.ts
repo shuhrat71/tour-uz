@@ -5,7 +5,7 @@ export const UltimateTravelStyle = styled.div`
   padding-top: 100px;
 
   .title {
-    font-size: 45px;
+    font-size: 35px;
     font-weight: bold;
     text-align: center;
   }
@@ -13,7 +13,7 @@ export const UltimateTravelStyle = styled.div`
   @media only screen and (min-width: 320px) and (max-width: 600px) {
     padding-top: 80px;
     .title {
-      font-size: 33px;
+      font-size: 35px;
       font-weight: bold;
       text-align: center;
     }

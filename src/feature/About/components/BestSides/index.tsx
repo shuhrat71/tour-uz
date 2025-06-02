@@ -29,7 +29,7 @@ const BestSide = ({ Icon, title, subtitle, color, bgColor }: Props) => {
           sx={{ color: color, backgroundColor: bgColor }}
         />
         <Box className="informations">
-          <Typography variant="h6" fontWeight={700}>
+          <Typography variant="h6" fontWeight={700} fontSize={"1rem"}>
             {title}
           </Typography>
           <Typography variant="body1" color="textSecondary">

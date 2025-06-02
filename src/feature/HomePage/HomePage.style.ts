@@ -76,7 +76,7 @@ export const TourActivitieStyle = styled.div`
   margin-top: 60px;
   width: 100%;
   .title {
-    font-size: 44px;
+    font-size: 35px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 30px;
@@ -100,7 +100,7 @@ export const TourActivitieStyle = styled.div`
 
   @media only screen and (min-width: 600px) and (max-width: 900px) {
     .title {
-      font-size: 34px;
+      font-size: 35px;
     }
   }
 
@@ -126,7 +126,7 @@ export const ExperiensWithUs = styled.div`
 
   .title {
     font-weight: 700;
-    font-size: 32px;
+    font-size: 35spx;
     margin-bottom: 20px;
   }
 
@@ -187,7 +187,7 @@ export const TouristSpot = styled.div`
 
   .title {
     text-align: center;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: bold;
     color: #ffffff;
     margin-bottom: 10px;

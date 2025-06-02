@@ -7,6 +7,7 @@ import {
   Container,
   Typography,
   CircularProgress,
+  Skeleton,
 } from "@mui/material";
 
 import { DataType, getDocuments } from "@/mocs";
@@ -30,15 +31,9 @@ function HappyClientsPage() {
 
   if (loading)
     return (
-      <Box
-        sx={{
-          display: "flex",
-          height: "70vh",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <CircularProgress />
+      <Box sx={{ pt: 0.5 }}>
+        <Skeleton />
+        <Skeleton width="60%" />
       </Box>
     );
   return (
@@ -53,7 +48,9 @@ function HappyClientsPage() {
                 alt={item.title}
                 style={{ width: "100%", height: "auto" }}
               />
-              <Typography variant="h1">{item.title}</Typography>
+              <Typography variant="h1" marginTop={0}>
+                {item.title}
+              </Typography>
               <p>{item.description}</p>
 
               {index !== satisfiedClients.length - 1 && (
@@ -71,7 +68,9 @@ function HappyClientsPage() {
                 src={item1.img}
                 style={{ width: "100%", height: "auto" }}
               />
-              <h1>{item1.title}</h1>
+              <Typography variant="h2" marginTop={0}>
+                {item1.title}
+              </Typography>
               <Divider
                 sx={{
                   marginTop: "20px",

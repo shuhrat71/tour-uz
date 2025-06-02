@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { Box, CircularProgress, Container } from "@mui/material";
+import { Box, CircularProgress, Container, Skeleton } from "@mui/material";
 
 import { DataType, getDocuments } from "@/mocs";
 
@@ -19,11 +19,11 @@ const GalleryPage = () => {
   console.log(galleryData);
 
   return (
-
     <Container maxWidth="xl">
       {loading ? (
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 80 }}>
-          <CircularProgress />
+        <Box sx={{ pt: 0.5 }}>
+          <Skeleton />
+          <Skeleton width="60%" />
         </Box>
       ) : (
         <GalleryWrapper>
@@ -35,7 +35,6 @@ const GalleryPage = () => {
         </GalleryWrapper>
       )}
     </Container>
-
   );
 };
 

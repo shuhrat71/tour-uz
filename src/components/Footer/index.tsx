@@ -30,7 +30,7 @@ function Footer() {
     <FooterWr>
       <FooterContainer maxWidth="xl">
         <FooterLogo>
-          <img width={100} src="./FooterBlackLogo.png" alt="logo" />
+          <img width={160} src="./FooterBlackLogo.png" alt="logo" />
         </FooterLogo>
 
         <FooterQuickLinks>

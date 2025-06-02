@@ -50,24 +50,12 @@ const UltimateServicePage = () => {
   return (
     <UltimateServiceStyle>
       <Container maxWidth="xl">
-        <Typography variant="h5" fontWeight={700}>
+        <Typography variant="h5" fontWeight={700} fontSize={"35px"}>
           {title}
         </Typography>
         <Stack direction={{ md: "column", lg: "row" }} mt={3} gap={2}>
           <Box flex={3}>
-            <Image
-              src={img}
-              alt={title}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                width: "100%",
-                height: "auto",
-                objectFit: "cover",
-                borderRadius: "10px",
-              }}
-            />{" "}
+            <Image src={img} alt={title} width={0} height={0} sizes="100vw" />{" "}
             <Box sx={{ width: "100%", typography: "body1" }}>
               <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
